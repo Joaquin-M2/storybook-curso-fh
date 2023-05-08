@@ -24,13 +24,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 14.17
+          node-version: 16
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build App
-        run: npn run build-dist
+        run: npm run build-dist
 
       - name: Semantic Release
         env:
