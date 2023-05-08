@@ -1,19 +1,43 @@
 {
-  "name": "02-proyecto-base",
-  "private": true,
+  "name": "testing-storybook-&-github-actions--curso-FH",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "main": "dist/index.js",
+  "homepage": "https://portfolio-website.joaquin-m2.vercel.app/",
+  "repository": {
+    "url": "https://github.com/Joaquin-M2/storybook-curso-fh",
+    "type": "git"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "typescript": ">=5.0.0"
+  },
+  "release": {
+    "branches": [
+      "storybook/github-actions-despliegue-npm-automatico"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build-dist": "npm run clean && tsc && npm run copy-files",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/"
   },
   "dependencies": {
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
-    "react": "^18.2.0",
+    "react": ">=18",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.10.0",
     "sort-by": "^1.2.0"
@@ -29,9 +53,20 @@
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "copyfiles": "^2.4.1",
     "prop-types": "^15.8.1",
+    "rimraf": "^5.0.0",
+    "semantic-release": "^21.0.2",
     "storybook": "^7.0.9",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
-  }
+  },
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ]
 }
